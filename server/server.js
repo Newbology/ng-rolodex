@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const redis = require('connect-redis')(session);
-const rolodex = require('./routes/rolodex');
+const rolodex = require('./routes/contacts');
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const ENV = process.env.NODE_ENV || 'development';
@@ -27,8 +27,9 @@ app.use(
 );
 
 app.use(passport.initialize());
-app.use('/rolodex', rolodex);
 
+
+app.use('/api', users);
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });
