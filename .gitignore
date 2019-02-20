@@ -32,7 +32,6 @@ speed-measure-plugin.json
 .history/*
 
 # misc
-node_modules
 .env
 /.sass-cache
 /connect.lock
