@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const redis = require('connect-redis')(session);
 const rolodex = require('./routes/rolodex');
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
@@ -15,18 +16,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-
-app.use(session({
-  store: new redis({ url: `${REDIS_URL}:${REDIS}`, logErrors:true}),
-  secret: SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: ENV === 'production'}
-}));
+app.use(
+  session({
+    store: new redis({ url: `${REDIS_URL}:${REDIS}`, logErrors: true }),
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: ENV === 'production' }
+  })
+);
 
 app.use(passport.initialize());
-app.use('/rolodex', rolodex)
+app.use('/rolodex', rolodex);
 
 app.listen(PORT, () => {
-  console.log(`Server running on port: ${PORT}`)
+  console.log(`Server running on port: ${PORT}`);
 });
