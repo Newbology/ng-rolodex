@@ -5,7 +5,7 @@ class Contact extends bookshelf.Model {
   get hasTimestamps() {return true;}
 
   contact() {
-    return this.belongsTo('User');
+    return this.belongsTo('User', 'id');
   }
 }
 module.exports = bookshelf.model('Contact', Contact);
