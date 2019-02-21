@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send('These should be contacts');
+  User.fetchAll()
+    .then(users => {
+      res.json(users);
+    })
+    .catch(() => {
+      res.status(500).send('error finding users');
+    });
 });
-
-
 
 module.exports = router;
