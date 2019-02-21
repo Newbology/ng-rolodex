@@ -3,12 +3,12 @@ const router = express.Router();
 const User = require('../../../database/models/User');
 const isAuth = require('../isAuthenticated');
 
-router.get('/profile', isAuth, (req,res) => {
+router.get('/profile', (req, res) => {
   let id = req.query.user;
   User
   .where('id', id)
-  .fetch()
-    .then((user) => {
+    .fetch()
+    .then(user => {
       res.json(user);
     })
     .catch(() => {
@@ -16,17 +16,19 @@ router.get('/profile', isAuth, (req,res) => {
     });
 });
 
-router.put('/user', (req,res) =>{
+router.put('/users', (req, res) => {
   let id = req.query.user;
+  let body = req.body;
   User
-  .forge()
-  .where('id', id)
-  .fetch()
-  .then((user) => {
-
-  })
-})
-
-
+  .forge(body)
+    .where('id', id)
+    .save(null, { method: 'update' })
+    .then(user => {
+      return res.json(user);
+    })
+    .catch(() => {
+      return res.status(500).send('Error updating account');
+    });
+});
 
 module.exports = router;
