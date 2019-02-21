@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const redis = require('connect-redis')(session);
-const rolodex = require('./routes/contacts');
+const users =require('./routes/users');
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const ENV = process.env.NODE_ENV || 'development';
