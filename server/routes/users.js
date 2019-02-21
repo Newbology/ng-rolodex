@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const contacts = require('./contacts');
-const 
-const app =express();
+const Contact = require('../../database/models/Contact')
+const app = express();
 
-router.route('/')
-.get( (req,res) => {
-  console.log('hitting')
-  User.fetchAll()
-    .then(users => {
-      console.log(users)
-      res.json(users);
+router.get(('/users'), (req,res) => {
+  console.log(req.body)
+  Contact
+  .where('contact_id', )
+ .fetchAll()
+    .then(contacts => {
+      res.json(contacts);
     })
     .catch(() => {
       res.status(500).send('error finding users');

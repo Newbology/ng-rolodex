@@ -8,4 +8,4 @@ class User extends bookshelf.Model{
     return this.hasMany('Contact', 'contacts_id', 'contacts_id');
   };
 };
-module.exports = bookshelf.Model('User', User);
+module.exports = bookshelf.model('User', User);
