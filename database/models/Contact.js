@@ -1,10 +1,10 @@
 const bookshelf = require('./bookshelf');
 
 class Contact extends bookshelf.Model {
-  get tableName() {return 'contacts';}
+  get tableName() {return 'createdBy';}
   get hasTimestamps() {return true;}
 
-  contact() {
+  contacts() {
     return this.belongsTo('User', 'id');
   }
 }
