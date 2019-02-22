@@ -6,4 +6,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema.dropTable('users');
+  // return knex.schema.table('users'), table => {
+  //   table.integer('contact_id').unsigned()
+  // }
 };

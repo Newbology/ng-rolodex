@@ -6,4 +6,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema.dropColumn('id');
+  //return knex.schema.table('contacts', table => {
+  //table.renameColumn('id', 'contacts_id')
+  // })
 };
