@@ -13,13 +13,6 @@ router.get('/contacts', (req, res) => {
     });
 });
 
-router.get('/contacts/search', (req, res) => {});
-
-router.get('./contacts/:id', (req, res) => {});
-
-router.put('./contacts/:id', (req, res) => {});
-
-router.delete('./contacts/:id', (req, res) => {});
 
 router.post('/contacts', (req, res) => {
   let body = req.body;
